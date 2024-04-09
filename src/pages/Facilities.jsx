@@ -1,12 +1,12 @@
 import React from 'react';
-import san from '../../assets/img/san.jpg';
-import laun from '../../assets/img/laun.png';
-import meal from '../../assets/img/meal.jpg';
-import safe from '../../assets/img/safe.jpg';
-import water from '../../assets/img/water.jpg';
-import cctv from '../../assets/img/cctv.jpg';
-import park from '../../assets/img/park.jpg';
-import college from '../../assets/img/college.jpg';
+import san from '../assets/img/san.jpg';
+import laun from '../assets/img/laun.png';
+import meal from '../assets/img/meal.jpg';
+import safe from '../assets/img/safe.jpg';
+import water from '../assets/img/water.jpg';
+import cctv from '../assets/img/cctv.jpg';
+import park from '../assets/img/park.jpg';
+import college from '../assets/img/college.jpg';
 import './Facilities.css'
 
 export const Facilities = () => {

@@ -1,9 +1,9 @@
 import React from 'react';
-import hpage from '../../assets/img/hpage.jpg';
+import hpage from '../assets/img/hpage.jpg';
 import './About.css'
 
 export const About = () => {
-  return <div className='about_section'>
+  return  <div className='about_section'>
           <div className='title1'>
           <h1> ABOUT US </h1>
           </div>

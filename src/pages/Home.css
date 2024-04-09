@@ -1,0 +1,129 @@
+ .pagebox{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100vh;
+    padding: 65px;
+}
+
+.pagebox .bg{
+    position: absolute;
+    z-index: 0;
+    height: 100%;
+    width: 100%;
+    filter: blur(4px);
+}
+
+.images{
+    align-items:end;
+    height: 500px;
+    width: 500px;
+    position: relative;
+} 
+
+
+.quotes{
+    justify-content:space-evenly;
+}
+
+.name h1{
+    color: white;
+    padding-bottom: 15px;
+    position: relative;
+    font-size: 4ch;
+    font-weight: 300;
+}
+
+.name h1::after{
+    display: block;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 100%;
+    width: 0;
+    bottom: 0;
+    z-index: 1;
+    background-color: #77CE89;
+    animation: text-reveal 1s ease-out 0.6s forwards;
+}
+
+.quote h2{
+    color:white;
+    padding-bottom: 20px;
+    position: relative;
+    font-size: 3.5ch;
+    font-weight: 200;
+}
+
+.quote h2::after{
+    display: block;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 100%;
+    width: 0;
+    bottom: 0;
+    z-index: 1;
+    background-color: #77CE89;
+    animation: text-reveal 1.5s ease-out 0.6s forwards;
+}
+
+@keyframes text-reveal {
+    0% {
+        width: 0%;
+        right: 100%;
+        left: 0;
+    }
+    50%{
+        left: 0;
+        width: 100%;
+        right:0%;
+    }
+    100%{
+        width: 0%;
+        left: 100%;
+    }
+}
+
+.buttons button{
+    padding: 15px;
+    border-radius: 30px;
+    background-color: white;
+    cursor: pointer;
+    background: linear-gradient(to right, #3dab53 50%, white );
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: all .5s ease-out;
+    position: absolute;
+    z-index: 1;
+}
+
+.buttons button:hover{
+    transform: scale(1.05);
+    background-position: left bottom;
+}
+
+h3 {
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+  }
+h3::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    border-radius: 5px;
+    height: 0.05em;
+    bottom: 0;
+    left: 0;
+    background: currentcolor;
+    transform-origin: bottom left;
+    transition: transform 0.25s ease-out;
+  }
+h3:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }

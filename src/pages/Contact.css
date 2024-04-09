@@ -1,0 +1,29 @@
+.con h1{
+    padding: 30px;
+    text-align: center;
+    font-weight: 500;
+    color: #77CE89;
+}
+
+.con_section{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.con_info{
+    padding: 10px;
+    background-color: #77CE89;
+    border-radius: 70px;
+    box-shadow: 7px 7px 10px #aaaaaa;
+}
+
+.con_info:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: .2s ease-out;
+}
+
+
+.in{
+    padding: 30px;
+}
