@@ -66,6 +66,7 @@
     font-size: 1.2rem;
     background-color: #77CE89;
     cursor: pointer;
+    border-radius: 2ch;
 }
 
 .price{
@@ -134,6 +135,7 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     padding: 10px;
     cursor: pointer;
+    border-radius: 2ch;
   }
 
  .b1{

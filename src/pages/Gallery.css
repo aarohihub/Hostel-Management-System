@@ -5,5 +5,42 @@
     color: #77CE89;
 }
 
+.imagess{
+    height: 500px;
+    width: 500px;
+}
 
- 
+.image-slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .image-slider img {
+    max-width: 300%;
+    max-height: 520px; 
+    margin: 0 10px; 
+  }
+  
+  .image-slider button {
+    background-color: #77CE89; /* Button background color */
+    color: #fff; /* Button text color */
+    border:none;
+    padding: 10px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 5ch;
+  }
+  
+  .image-slider button:hover {
+    background-color: #727771; /* Hover state color */
+  }
+  
+  /* Additional styles for previous and next buttons */
+  .image-slider button:first-of-type {
+    margin-right: 10px;
+  }
+  
+  .image-slider button:last-of-type {
+    margin-left: 10px;
+  }

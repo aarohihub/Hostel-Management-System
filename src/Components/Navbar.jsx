@@ -1,4 +1,12 @@
 import React, {useState} from 'react';
+import { HiHome } from "react-icons/hi2";
+import { LuScrollText } from "react-icons/lu";
+import { MdOutlineRoomPreferences } from "react-icons/md";
+import { MdBedroomParent } from "react-icons/md";
+import { GrGallery } from "react-icons/gr";
+import { MdPermContactCalendar } from "react-icons/md";
+import { RiLoginBoxFill } from "react-icons/ri";
+import { SiGnuprivacyguard } from "react-icons/si";
 import roommate from './roommate.png'
 import { Link, NavLink} from 'react-router-dom';
 import "./Navbar.css"
@@ -18,35 +26,35 @@ export const Navbar = () => {
         <ul className={menuOpen ? "open" : ""}>
 
             <li>
-                <NavLink to ="/">HOME</NavLink>
+                <NavLink to ="/"><h4><HiHome /></h4>HOME</NavLink>
             </li>
 
             <li>
-                <NavLink to ="about">ABOUT</NavLink>
+                <NavLink to ="about"><h4><LuScrollText /></h4>ABOUT</NavLink>
             </li>
 
             <li>
-                <NavLink to ="facilities">FACILITIES</NavLink>
+                <NavLink to ="facilities"><h4><MdOutlineRoomPreferences /></h4>FACILITIES</NavLink>
             </li>
 
             <li>
-                <NavLink to ="rooms">ROOMS</NavLink>
+                <NavLink to ="rooms"><h4><MdBedroomParent /></h4>ROOMS</NavLink>
             </li>
 
             <li>
-                <NavLink to ="gallery">GALLERY</NavLink>
+                <NavLink to ="gallery"><h4><GrGallery /></h4>GALLERY</NavLink>
             </li>
 
             <li>
-                <NavLink to ="contacts">CONTACTS</NavLink>
+                <NavLink to ="contacts"><h4><MdPermContactCalendar /></h4>CONTACTS</NavLink>
             </li>
 
             <li>
-                <NavLink to ="login">LOGIN</NavLink>
+                <NavLink to ="login"><h4><RiLoginBoxFill /></h4>LOGIN</NavLink>
             </li>
 
             <li>
-                <NavLink to ="signup">SIGNUP</NavLink>
+                <NavLink to ="signup"><h4><SiGnuprivacyguard /></h4>SIGNUP</NavLink>
             </li>
         </ul>
 
