@@ -1,0 +1,45 @@
+.tasks-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .tasks-table th,
+  .tasks-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .tasks-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .tasks-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .tasks-table tbody tr:hover {
+    background-color: #e6f7ff;
+  }
+  
+  .tasks-table select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .tasks-table button {
+    margin-left: 8px;
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .tasks-table button:hover {
+    background-color: #0056b3;
+  }
+  
