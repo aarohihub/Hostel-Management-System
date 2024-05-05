@@ -1,0 +1,129 @@
+.facc h1{
+    padding: 30px;
+    text-align: center;
+    font-weight: 500;
+    color: #77CE89;
+}
+
+
+
+.Fac{
+    display:list-item;
+   
+}
+
+.fac_section{
+    display: flex;
+}
+
+.fac_section1{
+    display: flex;
+}
+
+.card{
+    height: 300px;
+    margin: 50px;   
+    box-shadow: 7px 7px 10px #aaaaaa;
+    overflow: hidden;
+}
+
+.card1{
+    height: 300px;
+    margin: 50px;   
+    box-shadow: 7px 7px 10px #aaaaaa;
+    overflow: hidden;
+}
+
+.card img{
+    height: 300px;
+    width: 280px;
+    border-radius: 3px;
+}
+
+.card1 img{
+    height: 300px;
+    width: 280px;
+    border-radius: 3px;
+}
+
+.intro{
+    height: 85px;
+    width: 280px;
+    padding: 6px;
+    box-sizing: border-box;
+    position: absolute;
+    bottom:172px ;
+    background: rgb(27, 27, 27, .5);
+    color: whitesmoke;
+    transition: .3s ease;
+}
+
+.intro1{
+    height: 85px;
+    width: 280px;
+    padding: 6px;
+    box-sizing: border-box;
+    position: absolute;
+    bottom:-226px ;
+    background: rgb(27, 27, 27, .5);
+    color: whitesmoke;
+    transition: .3s ease;
+}
+
+.intro h1{
+    margin: 10px;
+    font-size: 25px;
+}
+
+.intro1 h1{
+    margin: 10px;
+    font-size: 27px;
+}
+
+.intro p{
+    margin: 10px;
+    visibility:hidden;
+    opacity: 0;
+}
+
+.intro1 p{
+    margin: 10px;
+    visibility:hidden;
+    opacity: 0;
+}
+
+.card:hover{
+    cursor: pointer;
+}
+
+.card1:hover{
+    cursor: pointer;
+}
+
+.card:hover .intro{
+    height: 300px;
+    bottom: 172px;
+}
+
+.card1:hover .intro1{
+    height: 300px;
+    bottom: -226px;
+}
+
+.card:hover p {
+    opacity: 1;
+    visibility: visible;
+}
+
+.card1:hover p {
+    opacity: 1;
+    visibility: visible;
+}
+
+.card:hover img{
+    transform: scale(1.05);
+}
+
+.card1:hover img{
+    transform: scale(1.05);
+}

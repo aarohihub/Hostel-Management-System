@@ -1,0 +1,126 @@
+.active {
+  background-color: aliceblue;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #77ce89;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+nav .title {
+  margin: 0.5rem;
+  height: 50px;
+  width: 50px;
+  padding-left: 80px;
+  padding-bottom: 60px;
+}
+
+nav .menu {
+  display: flex;
+  position: absolute;
+  top: 0.75rem;
+  right: 0.5rem;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 2.25rem;
+  height: 2rem;
+}
+
+nav .menu span {
+  height: 0.4rem;
+  width: 100%;
+  background-color: black;
+  border-radius: 0.2rem;
+}
+
+nav ul {
+  display: flex;
+}
+
+nav ul li {
+  list-style: none;
+  font-weight: 400;
+}
+
+nav ul li h4 {
+  text-align: center;
+}
+
+nav ul li a {
+  display: block;
+  text-decoration: none;
+  color: black;
+  padding: 0.6rem;
+  margin: 0 0.6rem;
+  border-radius: 0.5rem;
+}
+
+nav ul li a:not(.active):hover {
+  background-color: #aaebb7;
+}
+
+@media (max-width: 480px) {
+  nav .menu {
+    position: absolute;
+    display: flex;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 0.25rem;
+  }
+
+  nav ul.open {
+    display: flex;
+  }
+
+  nav ul li {
+    width: 100%;
+    text-align: center;
+  }
+
+  nav ul li a {
+    margin: 0.2rem 0.5rem;
+  }
+}
+@media (min-width: 481px) {
+  nav .menu {
+    position: absolute;
+    display: none;
+  }
+}
+
+/* LOGIN AND LOGOUT BUTTON */
+nav .btn {
+  padding: 8px 20px;
+  color: #e5e5e5;
+  background: transparent;
+  border: none;
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  z-index: 2;
+}
+nav .logoutBtn {
+  background: linear-gradient(135deg, black, rgb(49, 49, 49));
+}
+nav .loginBtn {
+  background: linear-gradient(135deg, black, rgb(49, 49, 49));
+}
+
+nav .btn:hover {
+  background: linear-gradient(135deg, rgb(0, 255, 85), black);
+  cursor: pointer;
+}

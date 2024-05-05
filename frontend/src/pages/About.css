@@ -1,0 +1,47 @@
+.container{
+  display: flex;
+  justify-content:space-around;
+  padding: 40px;
+}
+ 
+.container_image{
+  height: 400px;
+  width: 400px;
+  border-radius: 7rem;
+  box-shadow: 7px 7px 10px #aaaaaa;
+}
+
+.container_image:hover{
+  transform: scale(1.05);
+  transition: .2s ease-out;
+}
+
+.container_text{
+  padding: 40px;
+  background-color: #77CE89;
+  border-bottom-left-radius: 360px;
+  border-top-right-radius: 360px;
+  text-align: justify;
+  box-shadow: 7px 10px 7px #aaaaaa;
+}
+
+.container_text:hover{
+  transform: scale(1.05);
+  transition: .2s ease-out;
+}
+
+.container_text h2{
+  text-align: center;
+}
+
+.para{
+  padding: 20px;
+  text-justify: newspaper;
+}
+
+.title1 h1{
+  text-align: center;
+  padding-top: 30px;
+  color: #77CE89;
+  font-weight: 500;
+}
