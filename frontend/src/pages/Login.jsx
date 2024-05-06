@@ -18,27 +18,24 @@ export const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios
-        .post(
-          "http://localhost:4000/api/v1/user/login",
-          {
-            email,
-            password,
-            role: "Student",
-          },
-          {
-            withCredentials: true,
-            headers: { "Content-Type": "application/json" },
-          }
-        )
+      const response = await axios.post(
+        "http://localhost:4000/api/v1/user/login",
+        {
+          email,
+          password,
+          role: "Student",
+        },
+        {
+          withCredentials: true,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
 
-        .then((res) => {
-          toast.success(res.data.message);
-          setIsAuthenticated(true);
-          navigateTo("/");
-          setEmail("");
-          setPassword("");
-        });
+      toast.success(response.data.message);
+      setIsAuthenticated(true);
+      navigateTo("/");
+      setEmail("");
+      setPassword("");
     } catch (error) {
       toast.error(error.response.data.message);
     }

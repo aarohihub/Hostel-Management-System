@@ -15,21 +15,24 @@ import { toast } from "react-toastify";
 
 export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { isAuthenticated, setisAuthenticated } = useContext(Context);
+  const { isAuthenticated, setIsAuthenticated } = useContext(Context);
 
   const navigateTo = useNavigate();
 
   const handleLogout = async () => {
-    try {
-      await axios.get("http://localhost:4000/api/v1/user/student/logout", {
+    await axios
+      .get("http://localhost:4000/api/v1/user/student/logout", {
         withCredentials: true,
+      })
+      .then((res) => {
+        toast.success(res.data.message);
+        setIsAuthenticated(false);
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
       });
-      toast.success("Logout successful");
-      setisAuthenticated(false);
-    } catch (err) {
-      toast.error(err.response.data.message);
-    }
   };
+
   const gotoLogin = () => {
     navigateTo("/login");
   };
@@ -37,7 +40,6 @@ export const Navbar = () => {
   return (
     <nav>
       <Link to="/" className="title">
-        {" "}
         <img src={roommate} alt="" />
       </Link>
       <div
@@ -117,3 +119,4 @@ export const Navbar = () => {
     </nav>
   );
 };
+export default Navbar;

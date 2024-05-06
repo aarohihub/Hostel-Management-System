@@ -27,7 +27,7 @@ export const Signup = () => {
     console.log("Submitting form with data:", userData);
 
     axios
-      .post("http://localhost:3005/api/v1/user/signup", userData)
+      .post("http://localhost:4000/api/v1/user/student/register", userData)
       .then((res) => {
         console.log("Response:", res.data);
         console.log("Navigating to login page...");

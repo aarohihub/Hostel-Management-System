@@ -17,8 +17,27 @@ import Footer from "./pages/Footer";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-function App() {
+import { useContext, useEffect } from "react";
+import { Context } from "./main";
+const App = () => {
+  const { isAuthenticated, setIsAuthenticated, setUser } = useContext(Context);
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:4000/api/v1/user/student/me",
+          { withCredentials: true }
+        );
+        setIsAuthenticated(true);
+        setUser(response.data.user);
+        console.log(response.data.user);
+      } catch (error) {
+        setIsAuthenticated(false);
+        setUser({});
+      }
+    };
+    fetchUser();
+  }, [isAuthenticated]);
   return (
     <Router>
       <Navbar />
@@ -36,6 +55,6 @@ function App() {
       <Footer />
     </Router>
   );
-}
+};
 
 export default App;
