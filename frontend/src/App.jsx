@@ -19,6 +19,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useContext, useEffect } from "react";
 import { Context } from "./main";
+import axios from "axios";
 const App = () => {
   const { isAuthenticated, setIsAuthenticated, setUser } = useContext(Context);
   useEffect(() => {
@@ -30,7 +31,6 @@ const App = () => {
         );
         setIsAuthenticated(true);
         setUser(response.data.user);
-        console.log(response.data.user);
       } catch (error) {
         setIsAuthenticated(false);
         setUser({});

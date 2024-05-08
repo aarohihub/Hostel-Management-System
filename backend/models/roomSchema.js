@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const roomSchema = new mongoose.Schema({
-  id: {
+  roomId: {
     type: Number,
     required: true,
   },
@@ -11,7 +11,7 @@ const roomSchema = new mongoose.Schema({
   },
 
   roomPrice: {
-    type: Number,
+    type: String,
     required: true,
   },
   roomImage: {
@@ -19,7 +19,7 @@ const roomSchema = new mongoose.Schema({
     url: String,
   },
   roomDescription: {
-    type: String,
+    type: [String],
     required: true,
   },
   roomStatus: {

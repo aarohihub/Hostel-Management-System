@@ -1,8 +1,9 @@
 import { catchAsyncErrors } from "../middlewares/catchAsyncErrors.js";
 import { Room } from "../models/roomSchema.js";
 import ErrorHandler from "../middlewares/errorMiddleware.js";
+import cloudinary from "cloudinary";
 
-export const addRooom = catchAsyncErrors(async (req, res, next) => {
+export const addRoom = catchAsyncErrors(async (req, res, next) => {
   if (!req.files || Object.keys(req.files).length === 0) {
     return next(new ErrorHandler("Room Image Required!", 400));
   }
@@ -29,7 +30,7 @@ export const addRooom = catchAsyncErrors(async (req, res, next) => {
   }
 
   const cloudinaryResponse = await cloudinary.uploader.upload(
-    staffAvatar.tempFilePath
+    roomImage.tempFilePath
   );
   if (!cloudinaryResponse || cloudinaryResponse.error) {
     console.error(

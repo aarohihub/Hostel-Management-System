@@ -1,14 +1,31 @@
-.main{
-    position: absolute;
-    background-color: #77CE89;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 230px;
-    width: 100%;
-    /* border-top-left-radius: 30px;
+.main {
+  position: absolute;
+  background-color: #77ce89;
+  display: flex;
+  align-items: center;
+  height: 230px;
+  width: 100%;
+  overflow: hidden;
+  /* border-top-left-radius: 30px;
     border-top-right-radius: 30px; */
-    z-index: 1;
-    padding-top: 10px;
-    margin-top: 5px;
+}
+
+.description {
+  padding: 60px;
+  padding-left: 130px;
+  justify-content: center;
+  align-items: center;
+}
+
+.description ul li {
+  list-style: none;
+  font-weight: 400;
+}
+
+.description ul li a {
+  text-decoration: none;
+  color: black;
+  padding: 0.2rem;
+  margin: 0;
+  border-radius: 0.5rem;
 }

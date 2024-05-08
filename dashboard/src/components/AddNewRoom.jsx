@@ -7,54 +7,39 @@ import { toast } from "react-toastify";
 const AddNewRoom = () => {
   const { isAuthenticated, setIsAuthenticated } = useContext(Context);
 
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [nic, setNic] = useState("");
-  const [address, setAddress] = useState("");
-  const [dob, setDob] = useState("");
-  const [gender, setGender] = useState("");
-  const [password, setPassword] = useState("");
-  const [staffDepartment, setStaffDepartment] = useState("");
-  const [staffAvatar, setStaffAvatar] = useState("");
-  const [staffAvatarPreview, setStaffAvatarPreview] = useState("");
-
-  const departmentsArray = [
-    "Housekeeping",
-    "Maintenance",
-    "Food Service",
-    "Security",
-    "Laundry",
-  ];
+  const [roomId, setRoomId] = useState("");
+  const [roomName, setRoomName] = useState("");
+  const [roomPrice, setRoomPrice] = useState("");
+  const [roomImage, setRoomImage] = useState("");
+  const [roomDescription, setRoomDescription] = useState("");
+  const [roomStatus, setRoomStatus] = useState("");
+  const [roomImagePreview, setRoomImagePreview] = useState("");
 
   const navigateTo = useNavigate();
 
-  const handleAvatar = async (e) => {
+  const handleImage = async (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-      setStaffAvatarPreview(reader.result);
-      setStaffAvatar(file);
+      setRoomImagePreview(reader.result);
+      setRoomImage(file);
     };
   };
 
-  const handleAddNewStaff = async (e) => {
+  const handleAddNewRoom = async (e) => {
     e.preventDefault();
     try {
       const formData = new FormData();
-      formData.append("fullName", fullName);
-      formData.append("email", email);
-      formData.append("phone", phone);
-      formData.append("nic", nic);
-      formData.append("address", address);
-      formData.append("dob", dob);
-      formData.append("gender", gender);
-      formData.append("password", password);
-      formData.append("staffDepartment", staffDepartment);
-      formData.append("staffAvatar", staffAvatar);
+      formData.append("roomId", roomId);
+      formData.append("roomName", roomName);
+      formData.append("roomPrice", roomPrice);
+      formData.append("roomImage", roomImage);
+      formData.append("roomDescription", roomDescription);
+      formData.append("roomStatus", roomStatus);
+
       await axios
-        .post("http://localhost:4000/api/v1/user/staff/addnew", formData, {
+        .post("http://localhost:4000/api/v1/room/addnew", formData, {
           withCredentials: true,
           headers: { "Content-Type": "multipart/form-data" },
         })
@@ -79,87 +64,56 @@ const AddNewRoom = () => {
           <img src="/logo.png" alt="logo" className="logo" />
           <h1 className="form-title">ADD NEW ROOM</h1>
 
-          <form onSubmit={handleAddNewStaff}>
+          <form onSubmit={handleAddNewRoom}>
             <div className="first-wrapper">
               <div>
                 <img
                   src={
-                    staffAvatarPreview
-                      ? `${staffAvatarPreview}`
-                      : "/addroom.png"
+                    roomImagePreview ? `${roomImagePreview}` : "/addroom.png"
                   }
-                  alt="Staff Avatar"
+                  alt="Room Image"
                   style={{ height: "180px", width: "180px" }}
                 />
 
-                <input type="file" onChange={handleAvatar} />
+                <input type="file" onChange={handleImage} />
               </div>
               <div>
                 <input
                   type="text"
-                  placeholder="Full Name"
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
+                  placeholder="Room ID"
+                  value={roomId}
+                  onChange={(e) => setRoomId(e.target.value)}
                 />
 
                 <input
                   type="text"
-                  placeholder="Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Room Name"
+                  value={roomName}
+                  onChange={(e) => setRoomName(e.target.value)}
                 />
                 <input
                   type="number"
-                  placeholder="Phone Number"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                />
-                <input
-                  type="number"
-                  placeholder="NIC"
-                  value={nic}
-                  onChange={(e) => setNic(e.target.value)}
+                  placeholder="Room Price"
+                  value={roomPrice}
+                  onChange={(e) => setRoomPrice(e.target.value)}
                 />
                 <input
                   type="text"
-                  placeholder="Address"
-                  value={address}
-                  onChange={(e) => setAddress(e.target.value)}
+                  placeholder="Room Description"
+                  value={roomDescription}
+                  onChange={(e) => setRoomDescription(e.target.value)}
                 />
-                <input
-                  type="date"
-                  placeholder="Date of Birth"
-                  value={dob}
-                  onChange={(e) => setDob(e.target.value)}
-                />
+
                 <select
-                  value={gender}
-                  onChange={(e) => setGender(e.target.value)}
+                  value={roomStatus}
+                  onChange={(e) => setRoomStatus(e.target.value)}
                 >
-                  <option value="">Select Gender</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
+                  <option value="">Select Status</option>
+                  <option value="Available">Available</option>
+                  <option value="Full">Full</option>
                 </select>
-                <input
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                <select
-                  value={staffDepartment}
-                  onChange={(e) => setStaffDepartment(e.target.value)}
-                >
-                  <option value="">Select Department</option>
-                  {departmentsArray.map((element, index) => {
-                    return (
-                      <option value={element} key={index}>
-                        {element}
-                      </option>
-                    );
-                  })}
-                </select>
-                <button type="submit">Resigter New Staff</button>
+
+                <button type="submit">Add New Room</button>
               </div>
             </div>
           </form>
