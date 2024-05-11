@@ -20,7 +20,8 @@ const roomBookSchema = new mongoose.Schema({
   status: {
     type: String,
     required: false,
-    default: "Pending",
+    enum: ["Pending", "Complete"],
+    default: "Complete",
   },
   payment_status: {
     type: String,
@@ -33,9 +34,9 @@ const roomBookSchema = new mongoose.Schema({
     required: false,
   },
 
-  amount: {
+  price: {
     type: Number,
-    required: false,
+    required: true,
   },
 });
 

@@ -1,13 +1,22 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
-
-import "./Room.css";
+import React, { useState, useRef, useEffect, useContext } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import "./Room.css";
+import { Context } from "../main";
+import { toast } from "react-toastify";
+
 export const Rooms = () => {
+  const { isAuthenticated, user } = useContext(Context);
+
   const [showPopup, setShowPopup] = useState(false);
+  const [selectedRoom, setSelectedRoom] = useState(null);
   const popupRef = useRef(null);
   const [rooms, setRooms] = useState([]);
+  const [checkIn, setCheckIn] = useState("");
+  const [checkOut, setCheckOut] = useState("");
+
+  const navigateTo = useNavigate();
 
   useEffect(() => {
     const fetchRooms = async () => {
@@ -24,8 +33,54 @@ export const Rooms = () => {
     fetchRooms();
   }, []);
 
-  const togglePopup = () => {
-    setShowPopup(!showPopup);
+  const togglePopup = async (roomId) => {
+    const room = rooms.find((room) => room._id === roomId);
+    setSelectedRoom(room);
+
+    if (!room.roomDescription) {
+      try {
+        const response = await axios.get(
+          `http://localhost:4000/api/v1/room/getrooms/${roomId}`
+        );
+        setSelectedRoom(response.data.room);
+      } catch (error) {
+        console.error(`Error fetching room with ID ${roomId}:`, error);
+      }
+    }
+
+    setShowPopup(true);
+  };
+
+  const handleBookNow = async () => {
+    try {
+      console.log("User ID:", user && user._id);
+      console.log("Selected Room ID:", selectedRoom && selectedRoom._id);
+      console.log("Check-in Date:", checkIn);
+      console.log("Check-out Date:", checkOut);
+
+      console.log("Price:", selectedRoom.roomPrice);
+      const response = await axios
+        .post(
+          "http://localhost:4000/api/v1/room/book",
+          {
+            user_id: user._id,
+            room_id: selectedRoom._id,
+            check_in: checkIn,
+            check_out: checkOut,
+            price: selectedRoom.roomPrice,
+          },
+          {
+            withCredentials: true,
+            headers: { "Content-Type": "application/json" },
+          }
+        )
+        .then((res) => {
+          toast.success(res.data.message);
+          navigateTo("/");
+        });
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
   };
 
   const handleClickOutside = (event) => {
@@ -33,6 +88,10 @@ export const Rooms = () => {
       setShowPopup(false);
     }
   };
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" />;
+  }
 
   return (
     <div className="r_section">
@@ -50,14 +109,12 @@ export const Rooms = () => {
                 <li>{room.roomStatus}</li>
               </ul>
             </div>
-
             <div className="pay">
               <div className="price">
-                <b> ${room.roomPrice} </b>
+                <b> Rs {room.roomPrice} </b>
               </div>
-
               <div>
-                <button onClick={togglePopup}> Book now</button>
+                <button onClick={() => togglePopup(room._id)}> Book now</button>
               </div>
             </div>
           </div>
@@ -68,26 +125,43 @@ export const Rooms = () => {
         onClick={handleClickOutside}
       >
         <div className="popup-content" ref={popupRef}>
-          <span className="popup-close" onClick={togglePopup}>
+          <span className="popup-close" onClick={() => setShowPopup(false)}>
             &times;
           </span>
           <div className="details">
-            <h2>Booking Details</h2>
+            <h2>{selectedRoom && selectedRoom.roomName}</h2>
 
-            <p>Are you sure want to book this? </p>
+            <p>Description: {selectedRoom && selectedRoom.roomDescription}</p>
+            <p>Status: {selectedRoom && selectedRoom.roomStatus}</p>
+            <p>Price: Rs {selectedRoom && selectedRoom.roomPrice}</p>
+            <p>User: {user.fullName}</p>
+
+            <div>
+              Check-in
+              <input
+                type="date"
+                value={checkIn}
+                onChange={(e) => setCheckIn(e.target.value)}
+              />
+            </div>
+            <div>
+              Check-out
+              <input
+                type="date"
+                value={checkOut}
+                onChange={(e) => setCheckOut(e.target.value)}
+              />
+            </div>
           </div>
           <div className="betton">
             <div className="bu1">
-              <Link>
-                {" "}
-                <button className="b1">Pay</button>{" "}
-              </Link>
+              <button className="b1" onClick={handleBookNow}>
+                Book Now
+              </button>
             </div>
             <div className="bu2">
-              {" "}
-              <Link to="/rooms">
-                {" "}
-                <button className="b2"> Cancel </button>{" "}
+              <Link to="/">
+                <button className="b2"> Cancel </button>
               </Link>
             </div>
           </div>

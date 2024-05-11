@@ -63,3 +63,17 @@ export const getAllRooms = catchAsyncErrors(async (req, res, next) => {
     rooms,
   });
 });
+
+export const getRoom = catchAsyncErrors(async (req, res, next) => {
+  const roomId = req.params.id;
+
+  const room = await Room.findById(roomId);
+  if (!room) {
+    return next(new ErrorHandler("Room not found", 404));
+  }
+
+  res.status(200).json({
+    success: true,
+    room,
+  });
+});
