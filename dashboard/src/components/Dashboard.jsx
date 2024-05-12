@@ -9,36 +9,51 @@ import { toast } from "react-toastify";
 const Dashboard = () => {
   const { isAuthenticated, user } = useContext(Context);
 
-  const [appointments, setAppointments] = useState([]);
+  const [maintenance, setMaintenance] = useState([]);
 
   useEffect(() => {
-    const fetchAppointments = async () => {
+    const fetchMaintenance = async () => {
+      try {
+        const { data } = await axios.get(
+          "http://localhost:4000/api/v1/maintenance/getall",
+          { withCredentials: true }
+        );
+        setMaintenance(data.maintenance);
+      } catch (error) {
+        setMaintenance([]);
+        console.log("SOME ERROR OCCURED WHILE FETCHING MAINTENANCE", error);
+      }
+    };
+    fetchMaintenance();
+  }, []);
+  useEffect(() => {
+    const fetchStaffs = async () => {
       try {
         const { data } = await axios.get(
           "http://localhost:4000/api/v1/user/staffs",
           { withCredentials: true }
         );
-        setAppointments(data.staff);
+        setMaintenance(data.staff);
       } catch (error) {
-        setAppointments([]);
-        console.log("SOME ERROR OCCURED WHILE FETCHING APPOINTMENTS", error);
+        setMaintenance([]);
+        console.log("SOME ERROR OCCURED WHILE FETCHING STAFFS", error);
       }
     };
-    fetchAppointments();
+    fetchStaffs();
   }, []);
 
-  const handleUpdateStatus = async (appointmentId, status) => {
+  const handleUpdateStatus = async (maintenanceId, status) => {
     try {
       const { data } = await axios.put(
-        `http://localhost:4000/api/v1/appointment/update/${appointmentId}`,
+        `http://localhost:4000/api/v1/maintenance/update/${maintenanceId}`,
         { status },
         { withCredentials: true }
       );
-      setAppointments((prevAppointments) =>
-        prevAppointments.map((appointment) =>
-          appointment._id === appointmentId
-            ? { ...appointment, status }
-            : appointment
+      setMaintenance((prevMaintenance) =>
+        prevMaintenance.map((maintenance) =>
+          maintenance._id === maintenanceId
+            ? { ...maintenance, status }
+            : maintenance
         )
       );
       toast.success(data.message);
@@ -88,20 +103,21 @@ const Dashboard = () => {
               </tr>
             </thead>
             <tbody>
-              {appointments && appointments.length > 0 ? (
-                appointments.map((appointment) => {
+              {maintenance && maintenance.length > 0 ? (
+                maintenance.map((maintenance) => {
                   return (
-                    <tr key={appointment._id}>
-                      <td>{`${appointment.firstName} ${appointment.lastName}`}</td>
-                      <td>{appointment.appointment_date.substring(0, 16)}</td>
-                      <td>{`${appointment.doctor.firstName} ${appointment.doctor.lastName}`}</td>
-                      <td>{appointment.department}</td>
+                    <tr key={maintenance._id}>
+                      <td>{`${maintenance.fullName}`}</td>
+                      <td>{maintenance.date.substring(0, 10)}</td>
+                      <td>{maintenance.issue}</td>
+
+                      <td>{maintenance.department}</td>
                       <td>
                         <select
                           className={
-                            appointment.status === "Pending"
+                            maintenance.status === "Pending"
                               ? "value-pending"
-                              : appointment.status === "Rejected"
+                              : maintenance.status === "Rejected"
                               ? "value-rejected"
                               : "value-accepted"
                           }
@@ -112,17 +128,7 @@ const Dashboard = () => {
                           <option value="Accepted" className="value-accepted">
                             Accepted
                           </option>
-                          <option value="Rejected" className="value-rejected">
-                            Rejected
-                          </option>
                         </select>
-                      </td>
-                      <td>
-                        {appointment.hasVisited === true ? (
-                          <GoCheckCircleFill className="green" />
-                        ) : (
-                          <AiFillCloseCircle className="red" />
-                        )}
                       </td>
                     </tr>
                   );

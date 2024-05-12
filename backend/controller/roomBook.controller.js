@@ -4,9 +4,17 @@ import { catchAsyncErrors } from "../middlewares/catchAsyncErrors.js";
 import ErrorHandler from "../middlewares/errorMiddleware.js";
 
 export const bookRoom = catchAsyncErrors(async (req, res, next) => {
-  const { user_id, room_id, check_in, check_out, price } = req.body;
+  const { user_id, room_id, check_in, check_out, price, entered_amount } =
+    req.body;
 
-  if (!user_id || !room_id || !check_in || !check_out || !price) {
+  if (
+    !user_id ||
+    !room_id ||
+    !check_in ||
+    !check_out ||
+    !price ||
+    !entered_amount
+  ) {
     return next(new ErrorHandler("Please fill in all fields", 400));
   }
 
@@ -32,6 +40,12 @@ export const bookRoom = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("Student already has a booking", 400));
   }
 
+  // Compare entered amount with the room price
+  if (Number(entered_amount) !== Number(price)) {
+    return next(
+      new ErrorHandler("Entered amount does not match room price", 400)
+    );
+  }
   // If all checks pass, proceed with booking
   const findUser = await User.findOne({ _id: user_id });
 
@@ -39,7 +53,14 @@ export const bookRoom = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("User Not Found", 400));
   }
 
-  await RoomBook.create({ user_id, room_id, check_in, check_out, price });
+  await RoomBook.create({
+    user_id,
+    room_id,
+    check_in,
+    check_out,
+    price,
+    entered_amount,
+  });
   res.status(200).json({
     success: true,
     message: "Room Booked Successfully!",

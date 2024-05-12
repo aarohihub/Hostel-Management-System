@@ -9,6 +9,7 @@ import { errorMiddleware } from "./middlewares/errorMiddleware.js";
 import userRouter from "./router/userRouter.js";
 import addRoomRouter from "./router/addRoomRouter.js";
 import bookRoom from "./router/roombook.router.js";
+import maintenanceRouter from "./router/maintenanceRouter.js";
 
 const app = express();
 config({ path: "./config/config.env" });
@@ -40,6 +41,7 @@ app.use("/api/v1/message", messageRouter);
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/room", addRoomRouter);
 app.use("/api/v1/room", bookRoom);
+app.use("/api/v1/maintenance", maintenanceRouter);
 dbConnection();
 
 app.use(errorMiddleware);

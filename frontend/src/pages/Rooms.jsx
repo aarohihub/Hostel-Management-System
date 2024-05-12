@@ -15,6 +15,15 @@ export const Rooms = () => {
   const [rooms, setRooms] = useState([]);
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
+  const [amount, setAmount] = useState(
+    selectedRoom ? selectedRoom.roomPrice : ""
+  );
+  const [enteredAmount, setEnteredAmount] = useState("");
+
+  const handleAmountChange = (e) => {
+    setAmount(e.target.value);
+    setEnteredAmount(e.target.value);
+  };
 
   const navigateTo = useNavigate();
 
@@ -53,12 +62,18 @@ export const Rooms = () => {
 
   const handleBookNow = async () => {
     try {
+      if (!amount || isNaN(amount) || amount <= 0) {
+        // Check if amount is not provided, is NaN, or is less than or equal to 0
+        toast.error("Please enter a valid amount");
+        return;
+      }
       console.log("User ID:", user && user._id);
       console.log("Selected Room ID:", selectedRoom && selectedRoom._id);
       console.log("Check-in Date:", checkIn);
       console.log("Check-out Date:", checkOut);
 
       console.log("Price:", selectedRoom.roomPrice);
+      console.log("Entered Amount", amount);
       const response = await axios
         .post(
           "http://localhost:4000/api/v1/room/book",
@@ -68,6 +83,7 @@ export const Rooms = () => {
             check_in: checkIn,
             check_out: checkOut,
             price: selectedRoom.roomPrice,
+            entered_amount: amount,
           },
           {
             withCredentials: true,
@@ -136,20 +152,28 @@ export const Rooms = () => {
             <p>Price: Rs {selectedRoom && selectedRoom.roomPrice}</p>
             <p>User: {user.fullName}</p>
 
-            <div>
-              Check-in
+            <div className="check-in">
+              Check-in:
               <input
                 type="date"
                 value={checkIn}
                 onChange={(e) => setCheckIn(e.target.value)}
               />
             </div>
-            <div>
-              Check-out
+            <div className="check-out">
+              Check-out:
               <input
                 type="date"
                 value={checkOut}
                 onChange={(e) => setCheckOut(e.target.value)}
+              />
+            </div>
+            <div className="amount">
+              Enter amount:
+              <input
+                type="number"
+                value={amount}
+                onChange={handleAmountChange}
               />
             </div>
           </div>

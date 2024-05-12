@@ -11,11 +11,27 @@ import {
 import { GrHostMaintenance } from "react-icons/gr";
 import "./Sidebar.css";
 import { Context } from "../main";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const Sidebar = () => {
   const [show, setShow] = useState(false);
 
   const { isAuthenticated, setIsAuthenticated } = useContext(Context);
+
+  const handleLogout = async () => {
+    await axios
+      .get("http://localhost:4000/api/v1/user/student/logout", {
+        withCredentials: true,
+      })
+      .then((res) => {
+        toast.success(res.data.message);
+        setIsAuthenticated(false);
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+      });
+  };
 
   return (
     <div
@@ -55,7 +71,7 @@ const Sidebar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/logout">
+          <Link to="/login" onClick={handleLogout}>
             <FaSignOutAlt /> Log Out
           </Link>
         </li>

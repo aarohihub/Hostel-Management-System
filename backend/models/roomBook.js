@@ -26,7 +26,7 @@ const roomBookSchema = new mongoose.Schema({
   payment_status: {
     type: String,
     required: false,
-    default: "Pending",
+    default: "Completed",
   },
 
   payment_id: {
@@ -35,6 +35,12 @@ const roomBookSchema = new mongoose.Schema({
   },
 
   price: {
+    type: Number,
+    required: true,
+  },
+
+  entered_amount: {
+    // New field for the amount entered by the student
     type: Number,
     required: true,
   },

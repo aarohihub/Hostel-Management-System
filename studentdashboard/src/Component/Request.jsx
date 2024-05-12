@@ -1,17 +1,57 @@
-import React, { useState } from 'react';
-import './Request.css';
+import React, { useState, useEffect, useContext } from "react";
+import "./Request.css";
+import axios from "axios";
+import { Navigate, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { Context } from "../main";
 
 const Request = () => {
-  const [name, setName] = useState('');
-  const [roomNo, setRoomNo] = useState('');
-  const [issue, setIssue] = useState('');
+  const { isAuthenticated } = useContext(Context);
 
-  const handleSubmit = (e) => {
+  const [fullName, setFullName] = useState("");
+  const [date, setDate] = useState("");
+  const [issue, setIssue] = useState("");
+  const [roomName, setRoomName] = useState("");
+  const [department, setDepartment] = useState("");
+
+  const departmentsArray = [
+    "Housekeeping",
+    "Maintenance",
+    "Food Service",
+    "Security",
+    "Laundry",
+  ];
+
+  const navigateTo = useNavigate();
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Logic to handle form submission, such as sending the request
-    console.log('Request submitted:', { name, roomNo, issue });
-    // You can add further logic here, like sending the request to a server
+    try {
+      await axios
+        .post(
+          "http://localhost:4000/api/v1/maintenance/post",
+          {
+            fullName,
+            date,
+            issue,
+            roomName,
+            department,
+          },
+          {
+            withCredentials: true,
+            headers: { "Content-Type": "application/json" },
+          }
+        )
+        .then((res) => {
+          toast.success(res.data.message);
+          navigateTo("/");
+        });
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
   };
+  if (!isAuthenticated) {
+    return <Navigate to={"/login"} />;
+  }
 
   return (
     <div className="content">
@@ -22,30 +62,51 @@ const Request = () => {
         <input
           type="text"
           id="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
           placeholder="Enter your name"
-          required
         />
-        <label htmlFor="roomNo">Room Number:</label>
+        <label htmlFor="date">Date</label>
         <input
           type="text"
-          id="roomNo"
-          value={roomNo}
-          onChange={(e) => setRoomNo(e.target.value)}
-          placeholder="Enter room number"
-          required
+          id="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+          placeholder="Enter Date"
         />
+        <label htmlFor="roomName">Room Name:</label>
+        <input
+          type="text"
+          id="roomName"
+          value={roomName}
+          onChange={(e) => setRoomName(e.target.value)}
+          placeholder="Enter room name"
+        />
+        <label htmlFor="department">Select Department</label>
+        <select
+          value={department}
+          onChange={(e) => setDepartment(e.target.value)}
+        >
+          <option value="">Select Department</option>
+          {departmentsArray.map((element, index) => {
+            return (
+              <option value={element} key={index}>
+                {element}
+              </option>
+            );
+          })}
+        </select>
         <label htmlFor="issue">Issue:</label>
         <textarea
-        type="text"
+          type="text"
           id="issue"
           value={issue}
           onChange={(e) => setIssue(e.target.value)}
           placeholder="Describe the issue"
-          required
         />
-        <button type="submit" className='butt'>Submit Request</button>
+        <button type="submit" className="butt">
+          Submit Request
+        </button>
       </form>
     </div>
   );
