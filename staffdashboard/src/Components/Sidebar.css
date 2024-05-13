@@ -1,0 +1,41 @@
+.sidebar {
+  max-width: 250px; /* Add max-width to make it responsive */
+  width: 100%; /* Set width to 100% to fill the available space */
+  height: 100vh;
+  background-color: #77ce89;
+  color: #fff;
+}
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar li {
+    margin-bottom: 10px; /* Add margin between list items */
+    font-size: 20px;
+    line-height: 2.5;
+  }
+  
+  .sidebar a {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .sidebar a:hover {
+    background-color: #fff;
+    color: #77ce89;
+  }
+  
+  .sidebar svg {
+    font-size: 30px;
+    margin-right: 10px;
+  }
+  
+  .sidebar h2 {
+    padding-left: 10px;
+  }
+  

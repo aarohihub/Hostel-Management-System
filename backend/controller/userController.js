@@ -1,6 +1,7 @@
 // Import required modules and functions
 import { catchAsyncErrors } from "../middlewares/catchAsyncErrors.js";
 import ErrorHandler from "../middlewares/errorMiddleware.js";
+import { Maintenance } from "../models/maintenanceSchema.js";
 import { User } from "../models/userSchema.js";
 import { generateToken } from "../utils/jwtToken.js";
 import cloudinary from "cloudinary";
@@ -26,9 +27,7 @@ export const studentRegister = catchAsyncErrors(async (req, res, next) => {
     !email ||
     !password ||
     !phone ||
-    !nic ||
     !dob ||
-    !gender ||
     !address ||
     !collegeName ||
     !role
@@ -274,5 +273,22 @@ export const addNewStaff = catchAsyncErrors(async (req, res, next) => {
     success: true,
     message: "New Staff Registered!",
     staff,
+  });
+});
+
+//Update Student
+export const updateStudent = catchAsyncErrors(async (req, res, next) => {
+  const { id } = req.params;
+  let student = await User.findById(id);
+
+  student = await User.findByIdAndUpdate(id, req.body, {
+    new: true,
+    runValidators: true,
+    useFindAndMOdify: false,
+  });
+  res.status(200).json({
+    status: true,
+    message: "Student Updated Successfully",
+    student,
   });
 });

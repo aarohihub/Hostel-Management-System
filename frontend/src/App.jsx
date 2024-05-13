@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
 import "./App.css";
 import { Navbar } from "./Components/Navbar";
@@ -49,7 +54,10 @@ const App = () => {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/contacts" element={<Contacts />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        {!isAuthenticated && <Route path="/signup" element={<Signup />} />}
+        {isAuthenticated && (
+          <Route path="/signup" element={<Navigate to="/" />} />
+        )}
       </Routes>
       <ToastContainer position="top-center" />
       <Footer />

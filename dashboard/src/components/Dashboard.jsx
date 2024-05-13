@@ -117,16 +117,20 @@ const Dashboard = () => {
                           className={
                             maintenance.status === "Pending"
                               ? "value-pending"
-                              : maintenance.status === "Rejected"
-                              ? "value-rejected"
-                              : "value-accepted"
+                              : maintenance.status === "Completed"
+                              ? "value-accepted"
+                              : ""
+                          }
+                          value={maintenance.status}
+                          onChange={(e) =>
+                            handleUpdateStatus(maintenance._id, e.target.value)
                           }
                         >
                           <option value="Pending" className="value-pending">
                             Pending
                           </option>
-                          <option value="Accepted" className="value-accepted">
-                            Accepted
+                          <option value="Completed" className="value-accepted">
+                            Completed
                           </option>
                         </select>
                       </td>

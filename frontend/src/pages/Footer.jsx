@@ -45,10 +45,6 @@ const Footer = () => {
           <li>
             <NavLink to="login">LOGIN</NavLink>
           </li>
-
-          <li>
-            <NavLink to="signup">SIGNUP</NavLink>
-          </li>
         </ul>
       </div>
 

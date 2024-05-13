@@ -2,26 +2,34 @@ import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const Signup = () => {
-  const [username, setName] = useState();
+  const [fullName, setFullName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [collegename, setCollegeName] = useState();
+  const [collegeName, setCollegeName] = useState();
   const [phone, setPhone] = useState();
   const [address, setAddress] = useState();
+  const [nic, setNic] = useState();
+  const [dob, setDob] = useState();
+  const [gender, setGender] = useState();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const userData = {
-      username,
+      fullName,
       email,
       password,
-      collegename,
+      collegeName,
       phone,
       address,
+
+      dob,
+
+      role: "Student",
     };
 
     console.log("Submitting form with data:", userData);
@@ -29,13 +37,13 @@ export const Signup = () => {
     axios
       .post("http://localhost:4000/api/v1/user/student/register", userData)
       .then((res) => {
+        toast.success(res.data.message);
         console.log("Response:", res.data);
         console.log("Navigating to login page...");
         navigate("/login");
       })
       .catch((err) => {
-        console.error("Error submitting form:", err);
-        console.error("Error details:", err.response?.data);
+        toast.error(err.response.data.message);
       });
   };
 
@@ -53,8 +61,9 @@ export const Signup = () => {
               placeholder="Enter Name"
               autoComplete="off"
               name="name"
+              value={fullName}
               className="form-control rounded-0"
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => setFullName(e.target.value)}
             />
           </div>
           <div className="mb-3">
@@ -66,6 +75,7 @@ export const Signup = () => {
               placeholder="Enter Email"
               autoComplete="off"
               name="email"
+              value={email}
               className="form-control rounded-0"
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -78,6 +88,7 @@ export const Signup = () => {
               type="password"
               placeholder="Enter Password"
               name="password"
+              value={password}
               className="form-control rounded-0"
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -90,6 +101,7 @@ export const Signup = () => {
               type="text"
               placeholder="Enter College Name"
               name="text"
+              value={collegeName}
               className="form-control rounded-0"
               autoComplete="off"
               onChange={(e) => setCollegeName(e.target.value)}
@@ -103,6 +115,7 @@ export const Signup = () => {
               type="number"
               placeholder="Enter Phone"
               name="text"
+              value={phone}
               className="form-control rounded-0"
               autoComplete="off"
               onChange={(e) => setPhone(e.target.value)}
@@ -116,11 +129,27 @@ export const Signup = () => {
               type="text"
               placeholder="Enter Address"
               name="text"
+              value={address}
               className="form-control rounded-0"
               autoComplete="off"
               onChange={(e) => setAddress(e.target.value)}
             />
           </div>
+          <div className="mb-3">
+            <label htmlFor="address">
+              <strong>Date of Birth</strong>
+            </label>
+            <input
+              type="date"
+              placeholder="Enter DOB"
+              name="text"
+              value={dob}
+              className="form-control rounded-0"
+              autoComplete="off"
+              onChange={(e) => setDob(e.target.value)}
+            />
+          </div>
+
           <button type="submit" className="btn btn-success w-100 rounded-0">
             Register
           </button>

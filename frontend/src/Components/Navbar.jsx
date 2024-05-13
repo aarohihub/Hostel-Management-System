@@ -5,6 +5,7 @@ import { MdOutlineRoomPreferences } from "react-icons/md";
 import { MdBedroomParent } from "react-icons/md";
 import { GrGallery } from "react-icons/gr";
 import { MdPermContactCalendar } from "react-icons/md";
+import { MdDashboard } from "react-icons/md";
 
 import roommate from "./roommate.png";
 import { Link, NavLink, useNavigate } from "react-router-dom";
@@ -106,6 +107,16 @@ export const Navbar = () => {
             CONTACTS
           </NavLink>
         </li>
+        {isAuthenticated && (
+          <li>
+            <NavLink to="http://localhost:5175/login" target="_blank">
+              <h4>
+                <MdDashboard />
+              </h4>
+              DASHBOARD
+            </NavLink>
+          </li>
+        )}
       </ul>
       {isAuthenticated ? (
         <button className="logoutBtn btn" onClick={handleLogout}>

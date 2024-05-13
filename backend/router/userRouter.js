@@ -10,6 +10,7 @@ import {
   logoutStaff,
   logoutStudent,
   studentRegister,
+  updateStudent,
 } from "../controller/userController.js";
 import {
   isAdminAuthenticated,
@@ -31,5 +32,8 @@ router.get("/admin/logout", isAdminAuthenticated, logoutAdmin);
 router.get("/student/logout", isStudentAuthenticated, logoutStudent);
 router.get("/staff/logout", isStaffAuthenticated, logoutStaff);
 router.post("/staff/addnew", isAdminAuthenticated, addNewStaff);
+
+//update student
+router.put("/update/:id", isStudentAuthenticated, updateStudent);
 
 export default router;

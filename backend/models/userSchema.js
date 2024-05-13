@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema({
   },
   nic: {
     type: String,
-    required: true,
+
     // minLength: [13, "NIC must contain exact 10 digits"],
     // maxLength: [13, "NIC must contain exact 10 digits"],
   },
@@ -36,8 +36,8 @@ const userSchema = new mongoose.Schema({
   },
   gender: {
     type: String,
-    required: true,
-    enum: ["Male"],
+
+    enum: ["Male", "Female"],
   },
   address: {
     type: String,
