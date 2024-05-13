@@ -3,6 +3,7 @@ import {
   deleteMaintenance,
   getAllMaintenance,
   getAllMaintenanceByDepartment,
+  getUserWithDepartment,
   postRequest,
   updateMaintenanceStatus,
 } from "../controller/maintenanceController.js";
@@ -25,5 +26,7 @@ router.get(
 );
 router.put("/update/:id", isAdminAuthenticated, updateMaintenanceStatus);
 router.delete("/delete/:id", isAdminAuthenticated, deleteMaintenance);
+
+router.get("/user/department", isStaffAuthenticated, getUserWithDepartment);
 
 export default router;

@@ -81,3 +81,20 @@ export const deleteMaintenance = catchAsyncErrors(async (req, res, next) => {
     message: "Maintenance Deleted!",
   });
 });
+
+export const getUserWithDepartment = async (req, res) => {
+  try {
+    // Fetch the user data
+    const user = await User.findById(req.user.id);
+
+    // Fetch the department-wise maintenance data
+    const maintenance = await Maintenance.find({ department: user.department });
+
+    // Return the user and maintenance data in the response
+    res.status(200).json({ user, maintenance });
+  } catch (error) {
+    res.status(500).json({
+      message: "Error occurred while fetching user and maintenance data",
+    });
+  }
+};

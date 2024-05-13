@@ -51,7 +51,7 @@ const Sidebar = () => {
       })
       .then((res) => {
         toast.success(res.data.message);
-        setisAuthenticated(false);
+        setIsAuthenticated(false);
       })
       .catch((err) => {
         toast.error(err.response.data.message);

@@ -5,11 +5,13 @@ import "./Tasks.css";
 import { Context } from "../main";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Tasks = () => {
   const { isAuthenticated, user } = useContext(Context);
 
   const [maintenance, setMaintenance] = useState([]);
+  const [department, setDepartment] = useState([]);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -29,7 +31,7 @@ const Tasks = () => {
     const fetchMaintenance = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:4000/api/v1/maintenance/getbydepartment/Food Service`,
+          `http://localhost:4000/api/v1/maintenance/getbydepartment/${user.staffDepartment}`,
           { withCredentials: true }
         );
         setMaintenance(data.maintenance);
