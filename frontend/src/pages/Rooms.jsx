@@ -43,6 +43,11 @@ export const Rooms = () => {
   }, []);
 
   const togglePopup = async (roomId) => {
+    if (!isAuthenticated) {
+      toast.error("Please login first to book");
+      navigateTo("/login");
+      return;
+    }
     const room = rooms.find((room) => room._id === roomId);
     setSelectedRoom(room);
 
@@ -105,10 +110,6 @@ export const Rooms = () => {
     }
   };
 
-  if (!isAuthenticated) {
-    return <Navigate to="/login" />;
-  }
-
   return (
     <div className="r_section">
       <div className="room">
@@ -116,7 +117,10 @@ export const Rooms = () => {
       </div>
       <div className="room_section">
         {rooms.map((room) => (
-          <div className="room1" key={room._id}>
+          <div
+            className={`room1 ${room.status === "Complete" ? "complete" : ""}`}
+            key={room._id}
+          >
             <img src={room.roomImage.url} alt="" />
             <h5>{room.roomName}</h5>
             <div className="room-info">

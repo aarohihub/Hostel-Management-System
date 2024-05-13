@@ -1,6 +1,6 @@
 .room_section {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: space-around;
   padding: 30px;
 }
@@ -16,10 +16,16 @@
   position: relative;
   height: 470px;
   width: 350px;
+  /* width: calc(26.33% - 40px); */
+  margin: 20px;
   background-color: aliceblue;
   border-top-left-radius: 3rem;
   border-top-right-radius: 3rem;
   box-shadow: 7px 7px 10px #a1e5af;
+}
+
+.room1.complete {
+  filter: grayscale(100%);
 }
 
 .room1:hover {
@@ -148,4 +154,18 @@
 
 .check-out {
   padding: 10px;
+}
+
+/* Media Query for smaller screens */
+@media (max-width: 768px) {
+  .room_section {
+    flex-direction: column;
+  }
+}
+
+/* Media Query for extra small screens */
+@media (max-width: 576px) {
+  .room_section {
+    flex-direction: column;
+  }
 }
