@@ -1,56 +1,56 @@
-// import React from 'react';
-// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// import Sidebar from './Components/Sidebar';
-// import Home from './Components/Home';
-// import Tasks from './Components/Tasks';
-// import Salary from './Components/Salary';
-// // import Logout from './Logout';
-// import './App.css'
+import React, { useContext, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./Components/Home";
 
-// const App = () => {
-//   return (
-//     <Router>
-//     <div className="app-container"> {/* Wrapper div for the entire layout */}
-//       <Sidebar /> {/* Sidebar on the left */}
-//       <div className="content-container"> {/* Container for the content */}
-//         <Routes>
-//           <Route path="/" element={<Home />} />
-//           <Route path="/tasks" element={<Tasks />} />
-//           <Route path="/salary" element={<Salary />} />
-//           <Route path="/logout" element={<Logout />} />
-//         </Routes>
-//       </div>
-//     </div>
-//   </Router>
-//   );
-// };
+import Sidebar from "./Components/Sidebar";
+import "./App.css";
+import Login from "./Components/Login";
+import { Context } from "./main";
+import axios from "axios";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Tasks from "./Components/Tasks";
+import Salary from "./Components/Salary";
 
-// export default App;
+const App = () => {
+  const { isAuthenticated, setIsAuthenticated, setUser } = useContext(Context);
 
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Sidebar from './Components/Sidebar';
-import Home from './Components/Home';
-import Tasks from './Components/Tasks';
-import Salary from './Components/Salary';
-// import Logout from './Logout';
-import './App.css'
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:4000/api/v1/user/staff/me",
+          { withCredentials: true }
+        );
+        setIsAuthenticated(true);
+        setUser(response.data.user);
+      } catch (error) {
+        setIsAuthenticated(false);
+        setUser({});
+      }
+    };
+    fetchUser();
+  }, [isAuthenticated]);
+  return (
+    <>
+      <Router>
+        <div className="app">
+          <Sidebar />
+          <div className="main">
+            <Routes>
+              <Route path="/" element={<Home />} />
 
-const App = () => (
-  <Router>
-    <div className="app">
-      <Sidebar />
-      <div className="main">
-        <Routes>
-          <Route path="/" element={<Home />} />
-//        <Route path="/tasks" element={<Tasks />} />
-//        <Route path="/salary" element={<Salary />} />
-          {/* <Route path="/logout" element={<LogOut />} /> */}
-        </Routes>
-      </div>
-    </div>
-  </Router>
-);
+              <Route path="/tasks" element={<Tasks />} />
+              <Route path="/salary" element={<Salary />} />
+              <Route path="/login" element={<Login />} />
+              {/* <Route path="/logout" element={<LogOut />} /> */}
+            </Routes>
+            <ToastContainer position="top-center" />
+          </div>
+        </div>
+      </Router>
+    </>
+  );
+};
 
 export default App;
-

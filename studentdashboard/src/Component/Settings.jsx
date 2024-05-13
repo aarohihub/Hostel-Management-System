@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import './Setting.css'; // Import CSS file for styling
+import React, { useState } from "react";
+import "./Setting.css"; // Import CSS file for styling
 
 const Setting = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Logic to update account settings goes here
-    console.log('Name:', name);
-    console.log('Email:', email);
-    console.log('Password:', password);
+    console.log("Name:", name);
+    console.log("Email:", email);
+    console.log("Password:", password);
     // Reset form fields after submission
-    setName('');
-    setEmail('');
-    setPassword('');
+    setName("");
+    setEmail("");
+    setPassword("");
   };
 
   return (
@@ -32,6 +32,7 @@ const Setting = () => {
             className="input-field"
           />
         </label>
+        <br></br>
         <label>
           Email:
           <input
@@ -41,6 +42,7 @@ const Setting = () => {
             className="input-field"
           />
         </label>
+        <br></br>
         <label>
           Password:
           <input
@@ -50,7 +52,10 @@ const Setting = () => {
             className="input-field"
           />
         </label>
-        <button type="submit" className="submit-button">Update Settings</button>
+        <br></br>
+        <button type="submit" className="submit-button">
+          Update Settings
+        </button>
       </form>
     </div>
   );

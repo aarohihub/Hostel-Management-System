@@ -20,6 +20,7 @@ app.use(
       process.env.FRONTEND_URL,
       process.env.DASHBOARD_URL,
       process.env.STUDENT_URL,
+      process.env.STAFF_URL,
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,

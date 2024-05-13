@@ -19,6 +19,8 @@ const Home = () => {
         console.log(error);
       }
     };
+
+    fetchUser();
   }, []);
   if (!isAuthenticated) {
     return <Navigate to="/login" />;
