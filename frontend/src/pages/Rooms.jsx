@@ -74,6 +74,7 @@ export const Rooms = () => {
       }
       console.log("User ID:", user && user._id);
       console.log("Selected Room ID:", selectedRoom && selectedRoom._id);
+      console.log("Selected Room Name:", selectedRoom && selectedRoom.roomName);
       console.log("Check-in Date:", checkIn);
       console.log("Check-out Date:", checkOut);
 
@@ -85,6 +86,7 @@ export const Rooms = () => {
           {
             user_id: user._id,
             room_id: selectedRoom._id,
+            roomName: selectedRoom.roomName,
             check_in: checkIn,
             check_out: checkOut,
             price: selectedRoom.roomPrice,

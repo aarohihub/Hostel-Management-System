@@ -9,6 +9,10 @@ const roomBookSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  roomName: {
+    type: String,
+    required: true,
+  },
   check_in: {
     type: Date,
     required: true,

@@ -4,12 +4,20 @@ import { catchAsyncErrors } from "../middlewares/catchAsyncErrors.js";
 import ErrorHandler from "../middlewares/errorMiddleware.js";
 
 export const bookRoom = catchAsyncErrors(async (req, res, next) => {
-  const { user_id, room_id, check_in, check_out, price, entered_amount } =
-    req.body;
+  const {
+    user_id,
+    room_id,
+    roomName,
+    check_in,
+    check_out,
+    price,
+    entered_amount,
+  } = req.body;
 
   if (
     !user_id ||
     !room_id ||
+    !roomName ||
     !check_in ||
     !check_out ||
     !price ||
@@ -56,6 +64,7 @@ export const bookRoom = catchAsyncErrors(async (req, res, next) => {
   await RoomBook.create({
     user_id,
     room_id,
+    roomName,
     check_in,
     check_out,
     price,
