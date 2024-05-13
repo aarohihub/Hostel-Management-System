@@ -1,10 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Navbar } from "./Components/Navbar";
-import { Home, About, Facilities, Rooms, Gallery, Contacts, Login, Signup } from "./pages";
-
+import { Home, About, Facilities, Rooms, Gallery, Contacts, Login } from "./pages";
 import Footer from "./pages/Footer";
-
 
 function App(){
   return <div className="App">
@@ -18,10 +16,9 @@ function App(){
       <Route path="/gallery" element={<Gallery />}/>
       <Route path="/contacts" element={<Contacts />}/>
       <Route path="/login" element={<Login />}/>
-      <Route path="/signup" element={<Signup />}/>
+      {/* <Route path="/signup" element={<Signup />}/> */}
     </Routes>
     <Footer />
-    
   </div>;
 }
 

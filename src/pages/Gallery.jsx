@@ -7,13 +7,11 @@ import tihar from '../assets/img/tihar.png'
 import "./Gallery.css";
 
 export const Gallery = () => {
-  // Define an array of image URLs
+  // an array of image URLs
   const imagess = [
     bday,
     holi,
     tihar,
-    
-    // Add more image URLs as needed
   ];
 
   // State to keep track of the currently displayed image index

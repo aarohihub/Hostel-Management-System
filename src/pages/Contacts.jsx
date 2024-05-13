@@ -5,16 +5,16 @@ import { FaFacebookSquare } from "react-icons/fa";
 import "./Contact.css"
 
 export const Contacts = () => {
-  return <div>
+  return <div className='contact-section'>
     <div className='contact'>
 
       <div className='con'>
-    <h1> Contact Us </h1>
+    <h1> CONTACT US </h1>
      </div>
 
      <div className='con_section'>
       <div className='contect'>
-          <img src="https://hostelsewa.com/Media/AdHomeSlider/contact.png" alt=""  height={400} width={400} />
+          <img src="https://hostelsewa.com/Media/AdHomeSlider/contact.png" alt=""  height={400} width={500} />
       </div>
 
       <div className='con_info'>

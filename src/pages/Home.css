@@ -92,7 +92,8 @@
     border-radius: 30px;
     background-color: white;
     cursor: pointer;
-    background: linear-gradient(to right, #3dab53 50%, white );
+    background: #3dab53;
+    /* linear-gradient(to right, #3dab53 50%, white ); */
     background-size: 200% 100%;
     background-position: right bottom;
     transition: all .5s ease-out;

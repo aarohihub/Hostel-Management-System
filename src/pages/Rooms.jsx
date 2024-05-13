@@ -42,11 +42,11 @@ export const Rooms = () => {
             <div className="pay">
 
       <div className="price">
-          <b> $50 </b>
+          <b> $20 </b>
       </div>
 
       <div>
-        <button onClick={togglePopup}> Book now</button>
+        <button onClick={togglePopup}><p>Book now</p></button>
       </div>
       </div>
         </div>
@@ -66,11 +66,11 @@ export const Rooms = () => {
             <div className="pay">
 
               <div className="price">
-                <b> $100 </b>
+                <b> $70 </b>
               </div>
 
               <div>
-                <button onClick={togglePopup}> Book now</button>
+                <button onClick={togglePopup}> <p>Book now</p></button>
               </div>
             </div>
        
@@ -81,7 +81,7 @@ export const Rooms = () => {
          
             <div className="room-info">
             <ul>
-             <li>Third floor </li>
+             <li>Second floor </li>
              <li>Spacious room</li>
              <li>A cupboard with big window</li>
              <li>Each roommate has separate working desk</li>
@@ -91,10 +91,10 @@ export const Rooms = () => {
           
             <div className="pay">
              <div className="price">
-               <b> $200 </b>
+               <b> $100 </b>
               </div>
               <div>
-                <button onClick={togglePopup}> Book now</button>
+                <button onClick={togglePopup}><p>Book now</p></button>
              </div>
             </div>
          
@@ -107,7 +107,8 @@ export const Rooms = () => {
             &times;
           </span>
           <div className="details">
-          <h2>Booking Details</h2>
+          <h2>Booking Details</h2> 
+          <p>Payment process: <button className='butten'> pay </button></p>
           <p>Needed to have an account for booking a room !!! </p>
           <p>Do you have an account? </p>
           </div>

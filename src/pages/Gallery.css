@@ -1,46 +1,49 @@
-.gallery h1{
-    padding: 30px;
-    text-align: center;
-    font-weight: 500;
-    color: #77CE89;
+/* Center the gallery section vertically */
+.gallery_section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-.imagess{
-    height: 500px;
-    width: 500px;
+/* Style the gallery title */
+.gallery h1 {
+  padding: 20px;
+  font-weight: 500;
+  font-size: 2.5rem;
+  color: #77CE89;
 }
 
+/* Style the image slider container */
 .image-slider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .image-slider img {
-    max-width: 300%;
-    max-height: 520px; 
-    margin: 0 10px; 
-  }
-  
-  .image-slider button {
-    background-color: #77CE89; /* Button background color */
-    color: #fff; /* Button text color */
-    border:none;
-    padding: 10px 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-size: 5ch;
-  }
-  
-  .image-slider button:hover {
-    background-color: #727771; /* Hover state color */
-  }
-  
-  /* Additional styles for previous and next buttons */
-  .image-slider button:first-of-type {
-    margin-right: 10px;
-  }
-  
-  .image-slider button:last-of-type {
-    margin-left: 10px;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Style the images */
+.image-slider img {
+  max-width: 90%; /* Adjust the width of the images */
+  max-height: 80vh; /* Adjust the height of the images */
+  border-radius: 8px; /* Add some border radius for a softer look */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  transition: transform 0.3s ease; /* Add a smooth transition when scaling the images */
+}
+
+/* Style the navigation buttons */
+.image-slider button {
+  background-color: transparent; /* Set button background color to transparent */
+  border: none; /* Remove button border */
+  padding: 10px; /* Adjust button padding */
+  cursor: pointer;
+  font-size: 2rem; /* Adjust button font size */
+  color: #77CE89; /* Set button text color */
+  transition: color 0.3s ease; /* Add transition for color change */
+}
+
+/* Style the navigation buttons on hover */
+.image-slider button:hover {
+  color: #4E4E4E; /* Change text color on hover */
+}

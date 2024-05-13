@@ -1,32 +1,21 @@
-.facc h1{
+/* .facc h1{
     padding: 30px;
     text-align: center;
     font-weight: 500;
     color: #77CE89;
 }
 
-
-
 .Fac{
     display:list-item;
    
 }
 
-.fac_section{
-    display: flex;
-}
-
+.fac_section,
 .fac_section1{
     display: flex;
 }
 
-.card{
-    height: 300px;
-    margin: 50px;   
-    box-shadow: 7px 7px 10px #aaaaaa;
-    overflow: hidden;
-}
-
+.card,
 .card1{
     height: 300px;
     margin: 50px;   
@@ -80,22 +69,14 @@
     font-size: 27px;
 }
 
-.intro p{
-    margin: 10px;
-    visibility:hidden;
-    opacity: 0;
-}
-
+.intro p,
 .intro1 p{
     margin: 10px;
     visibility:hidden;
     opacity: 0;
 }
 
-.card:hover{
-    cursor: pointer;
-}
-
+.card:hover,
 .card1:hover{
     cursor: pointer;
 }
@@ -110,20 +91,76 @@
     bottom: -226px;
 }
 
-.card:hover p {
-    opacity: 1;
-    visibility: visible;
-}
-
+.card:hover p,
 .card1:hover p {
     opacity: 1;
     visibility: visible;
 }
 
-.card:hover img{
-    transform: scale(1.05);
-}
-
+.card:hover img,
 .card1:hover img{
     transform: scale(1.05);
 }
+
+
+
+
+  
+  
+  
+
+  */
+
+  .facility-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .facc {
+    text-align: center;
+    margin-bottom: 30px;
+    width: 100%;
+    color: #77CE89 ;
+  }
+  
+  .facility {
+    width: calc(25% - 20px); /* Four facilities per row with spacing */
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center; /* Center the background image */
+  }
+  
+  .facility h3 {
+    font-size: 20px;
+    /* color: #333; */
+    margin-bottom: 10px;
+    padding: 20px;
+    background-color: rgba(61, 171, 94, 0.5);
+    color: #fff;
+  }
+  
+  .facility p {
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 20px;
+  }
+
+  .bgg{
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Add space between boxes */
+  .facility:nth-child(4n) {
+    margin-right: 0;
+  }
+  

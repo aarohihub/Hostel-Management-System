@@ -53,9 +53,9 @@ export const Navbar = () => {
                 <NavLink to ="login"><h4><RiLoginBoxFill /></h4>LOGIN</NavLink>
             </li>
 
-            <li>
+            {/* <li>
                 <NavLink to ="signup"><h4><SiGnuprivacyguard /></h4>SIGNUP</NavLink>
-            </li>
+            </li> */}
         </ul>
 
   </nav>;
