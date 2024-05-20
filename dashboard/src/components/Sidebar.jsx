@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { MdAddHome } from "react-icons/md";
+import { HiOutlineUserGroup } from "react-icons/hi";
 const Sidebar = () => {
   const [show, setShow] = useState(false);
 
@@ -43,6 +44,9 @@ const Sidebar = () => {
     navigateTo("/admin/addnew");
     setShow(!show);
   };
+  const gotoUsers = () => {
+    navigateTo("/users");
+  };
 
   const handleLogout = async () => {
     await axios
@@ -70,6 +74,7 @@ const Sidebar = () => {
           <IoPersonAddSharp onClick={gotoAddNewStaff} />
           <MdAddHome onClick={gotoAddNewRoom} />
           <AiFillMessage onClick={gotoMessagePage} />
+          <HiOutlineUserGroup onClick={gotoUsers} />
           <RiLogoutBoxFill onClick={handleLogout} />
         </div>
       </nav>

@@ -3,12 +3,12 @@ import { Message } from "../models/messageSchema.js";
 import ErrorHandler from "../middlewares/errorMiddleware.js";
 
 export const sendMessage = catchAsyncErrors(async (req, res, next) => {
-  const { fullName, email, phone, address, message } = req.body;
-  if (!fullName || !email || !phone || !address || !message) {
+  const { fullName, message } = req.body;
+  if (!fullName || !message) {
     return next(new ErrorHandler("Please fill full form", 400));
   }
 
-  await Message.create({ fullName, email, phone, address, message });
+  await Message.create({ fullName, message });
   res.status(200).json({
     success: true,
     message: "Message Send Successfully!",

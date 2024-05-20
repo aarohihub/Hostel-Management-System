@@ -39,6 +39,7 @@ const Home = () => {
             <th>Address</th>
             <th>Phone Number</th>
             <th>Email</th>
+            <th>Department</th>
             {/* <th>Password</th> */}
           </tr>
         </thead>
@@ -49,6 +50,7 @@ const Home = () => {
             <td>{user.address}</td>
             <td>{user.phone}</td>
             <td>{user.email}</td>
+            <td>{user.staffDepartment}</td>
             {/* <td>{user.password}</td> */}
           </tr>
         </tbody>

@@ -31,7 +31,7 @@ const Sidebar = () => {
       style={!isAuthenticated ? { display: "none" } : { display: "grid" }}
       className={show ? "show sidebar" : "sidebar"}
     >
-      <h2>Bright Future Hostel</h2>
+      <h2>HOSTEL STAYS</h2>
       <ul>
         <li>
           <Link to="/">
@@ -44,8 +44,8 @@ const Sidebar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/salary">
-            <FaMoneyBillWave /> Salary
+          <Link to="/message">
+            <FaMoneyBillWave /> Message
           </Link>
         </li>
         <li>

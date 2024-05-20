@@ -11,6 +11,8 @@ import addRoomRouter from "./router/addRoomRouter.js";
 import bookRoom from "./router/roombook.router.js";
 import maintenanceRouter from "./router/maintenanceRouter.js";
 
+import allUsers from "./router/userRouter.js";
+
 const app = express();
 config({ path: "./config/config.env" });
 
@@ -43,6 +45,7 @@ app.use("/api/v1/user", userRouter);
 app.use("/api/v1/room", addRoomRouter);
 app.use("/api/v1/room", bookRoom);
 app.use("/api/v1/maintenance", maintenanceRouter);
+app.use("/api/v1/users", allUsers);
 dbConnection();
 
 app.use(errorMiddleware);

@@ -17,7 +17,7 @@ export const Home = () => {
 
         <div className="quotes">
           <div className="name">
-            <h1> BRIGHT FUTURE HOSTEL </h1>
+            <h1> HOSTEL STAYS </h1>
           </div>
 
           <div className="quote">

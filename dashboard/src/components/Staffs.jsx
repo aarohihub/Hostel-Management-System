@@ -3,6 +3,7 @@ import { Context } from "../main";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
+import { MdDelete } from "react-icons/md";
 
 const Staffs = () => {
   const [staff, setStaff] = useState([]);
@@ -62,6 +63,12 @@ const Staffs = () => {
                     <p>
                       Gender: <span>{element.gender}</span>
                     </p>
+                    <MdDelete
+                      style={{
+                        color: "red",
+                        fontSize: "50px",
+                      }}
+                    />
                   </div>
                 </div>
               );

@@ -5,6 +5,7 @@ import { Maintenance } from "../models/maintenanceSchema.js";
 import { User } from "../models/userSchema.js";
 import { generateToken } from "../utils/jwtToken.js";
 import cloudinary from "cloudinary";
+import bcrypt from "bcrypt"; // Import bcrypt for password hashing
 
 // Register a new student
 export const studentRegister = catchAsyncErrors(async (req, res, next) => {
@@ -151,6 +152,13 @@ export const getAllStaffs = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
+export const getAllUsers = catchAsyncErrors(async (req, res, next) => {
+  const users = await User.find();
+  res.status(200).json({
+    success: true,
+    users,
+  });
+});
 export const getUserDetails = catchAsyncErrors(async (req, res, next) => {
   const user = req.user;
   res.status(200).json({
@@ -277,18 +285,33 @@ export const addNewStaff = catchAsyncErrors(async (req, res, next) => {
 });
 
 //Update Student
+
+// Update Student
 export const updateStudent = catchAsyncErrors(async (req, res, next) => {
   const { id } = req.params;
   let student = await User.findById(id);
 
+  if (!student) {
+    return next(new ErrorHandler("Student not found", 404));
+  }
+
+  // Check if password is being updated
+  if (req.body.password) {
+    // Hash the new password before saving
+    const salt = await bcrypt.genSalt(10);
+    req.body.password = await bcrypt.hash(req.body.password, salt);
+  }
+
+  // Update student data
   student = await User.findByIdAndUpdate(id, req.body, {
     new: true,
     runValidators: true,
-    useFindAndMOdify: false,
+    useFindAndModify: false,
   });
+
   res.status(200).json({
     status: true,
-    message: "Student Updated Successfully",
+    message: "Student updated successfully",
     student,
   });
 });

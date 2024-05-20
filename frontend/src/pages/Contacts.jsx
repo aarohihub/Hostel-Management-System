@@ -35,14 +35,14 @@ export const Contacts = () => {
               <h1>
                 <MdOutlineAttachEmail />
               </h1>{" "}
-              brightfuturehostel@gmail.com
+              hostelstays@gmail.com
             </div>
             <div className="in">
               {" "}
               <h1>
                 <FaFacebookSquare />
               </h1>{" "}
-              Bright_Future_Hostel
+              HOSTEL_STAYS
             </div>
           </div>
         </div>

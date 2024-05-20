@@ -3,6 +3,7 @@ import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Context } from "../main";
+import "./Message.css";
 
 const Messages = () => {
   const { isAuthenticated } = useContext(Context);

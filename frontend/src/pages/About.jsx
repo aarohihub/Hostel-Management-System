@@ -14,13 +14,13 @@ export const About = () => {
         </div>
 
         <div class="container_text">
-          <h2>Bright Future Hostel</h2>
+          <h2>HOSTEL STAYS</h2>
           <br />
           <div className="para">
             <p>
               <j>
                 <b>
-                  <u>Welcome to Bright Future Hostel</u>
+                  <u>Welcome to HOSTEL STAYS</u>
                 </b>
                 , your home away from home. Nestled in the heart of the city, we
                 offer <br /> modern accommodations and a vibrant community
@@ -29,7 +29,7 @@ export const About = () => {
                 for students, travelers,
                 <br /> and professionals alike. Join us and experience comfort,
                 convenience, and camaraderie
-                <br /> at Bright Future Hostel.
+                <br /> at HOSTEL STAYS
               </j>
             </p>
           </div>

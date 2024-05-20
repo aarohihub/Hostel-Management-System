@@ -4,6 +4,7 @@ import {
   addNewStaff,
   getAllStaffs,
   getAllStudents,
+  getAllUsers,
   getUserDetails,
   login,
   logoutAdmin,
@@ -32,6 +33,8 @@ router.get("/admin/logout", isAdminAuthenticated, logoutAdmin);
 router.get("/student/logout", isStudentAuthenticated, logoutStudent);
 router.get("/staff/logout", isStaffAuthenticated, logoutStaff);
 router.post("/staff/addnew", isAdminAuthenticated, addNewStaff);
+
+router.get("/users", isAdminAuthenticated, getAllUsers);
 
 //update student
 router.put("/update/:id", isStudentAuthenticated, updateStudent);

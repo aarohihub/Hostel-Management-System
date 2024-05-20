@@ -10,7 +10,7 @@ const Footer = () => {
     <div class="main">
       <div className="description">
         {" "}
-        <h2>Bright Future Hostel!</h2>
+        <h2>HOSTEL STAYS</h2>
         <br />
         <p>Copyright © 2012 - 2024 HostelG®. All rights reserved.</p>
         <br />
@@ -61,7 +61,7 @@ const Footer = () => {
             <h2>
               <MdOutlineAttachEmail />
             </h2>{" "}
-            brightfuturehostel@gmail.com
+            hostelstays@gmail.com
           </li>
         </ul>
       </div>

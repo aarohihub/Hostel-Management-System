@@ -24,6 +24,7 @@ router.get(
   isStaffAuthenticated,
   getAllMaintenanceByDepartment
 );
+router.put("/update/:id", isStaffAuthenticated, updateMaintenanceStatus);
 router.put("/update/:id", isAdminAuthenticated, updateMaintenanceStatus);
 router.delete("/delete/:id", isAdminAuthenticated, deleteMaintenance);
 
