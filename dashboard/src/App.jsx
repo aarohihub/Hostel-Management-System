@@ -16,6 +16,7 @@ import Staffs from "./components/Staffs";
 import AddNewStaff from "./components/AddNewStaff";
 import AddNewRoom from "./components/AddNewRoom";
 import Users from "./components/Users";
+import Rooms from "./components/Rooms";
 const App = () => {
   const { isAuthenticated, setIsAuthenticated, setUser } = useContext(Context);
 
@@ -49,6 +50,7 @@ const App = () => {
           <Route path="/messages" element={<Messages />} />
           <Route path="/staffs" element={<Staffs />} />
           <Route path="/users" element={<Users />} />
+          <Route path="/rooms" element={<Rooms />} />
         </Routes>
         <ToastContainer position="top-center" />
       </Router>

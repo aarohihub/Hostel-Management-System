@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  deleteUser,
   addNewAdmin,
   addNewStaff,
   getAllStaffs,
@@ -34,9 +35,12 @@ router.get("/student/logout", isStudentAuthenticated, logoutStudent);
 router.get("/staff/logout", isStaffAuthenticated, logoutStaff);
 router.post("/staff/addnew", isAdminAuthenticated, addNewStaff);
 
-router.get("/users", isAdminAuthenticated, getAllUsers);
+router.get("/getall", isAdminAuthenticated, getAllUsers);
 
 //update student
 router.put("/update/:id", isStudentAuthenticated, updateStudent);
+
+//delete user
+router.delete("/delete/:id", isAdminAuthenticated, deleteUser);
 
 export default router;

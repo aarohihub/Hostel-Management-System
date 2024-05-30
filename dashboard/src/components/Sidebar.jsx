@@ -13,6 +13,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { MdAddHome } from "react-icons/md";
 import { HiOutlineUserGroup } from "react-icons/hi";
+import { MdBedroomParent } from "react-icons/md";
 const Sidebar = () => {
   const [show, setShow] = useState(false);
 
@@ -47,6 +48,9 @@ const Sidebar = () => {
   const gotoUsers = () => {
     navigateTo("/users");
   };
+  const gotoRooms = () => {
+    navigateTo("/rooms");
+  };
 
   const handleLogout = async () => {
     await axios
@@ -75,6 +79,7 @@ const Sidebar = () => {
           <MdAddHome onClick={gotoAddNewRoom} />
           <AiFillMessage onClick={gotoMessagePage} />
           <HiOutlineUserGroup onClick={gotoUsers} />
+          <MdBedroomParent onClick={gotoRooms} />
           <RiLogoutBoxFill onClick={handleLogout} />
         </div>
       </nav>

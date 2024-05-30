@@ -24,6 +24,19 @@ const Staffs = () => {
     fetchStaff();
   }, []);
 
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:4000/api/v1/user/delete/${id}`, {
+        withCredentials: true,
+      });
+      // Remove the deleted staff member from the state
+      setStaff(staff.filter((member) => member._id !== id));
+      toast.success("Staff deleted successfully");
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  };
+
   if (!isAuthenticated) {
     return <Navigate to={"/login"} />;
   }
@@ -35,7 +48,7 @@ const Staffs = () => {
           {staff && staff.length > 0 ? (
             staff.map((element) => {
               return (
-                <div className="card">
+                <div className="card" key={element._id}>
                   <img
                     src={element.staffAvatar && element.staffAvatar.url}
                     alt="Staff Avatar"
@@ -67,7 +80,9 @@ const Staffs = () => {
                       style={{
                         color: "red",
                         fontSize: "50px",
+                        cursor: "pointer",
                       }}
+                      onClick={() => handleDelete(element._id)}
                     />
                   </div>
                 </div>

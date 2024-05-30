@@ -315,3 +315,17 @@ export const updateStudent = catchAsyncErrors(async (req, res, next) => {
     student,
   });
 });
+
+//Delete users
+export const deleteUser = catchAsyncErrors(async (req, res, next) => {
+  const { id } = req.params;
+  const user = await User.findByIdAndDelete(id);
+  if (!user) {
+    return next(new ErrorHandler("User not found", 404));
+  }
+  res.status(200).json({
+    status: true,
+    message: "User deleted successfully",
+    user,
+  });
+});

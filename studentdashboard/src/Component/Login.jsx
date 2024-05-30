@@ -44,7 +44,7 @@ const Login = () => {
   return (
     <div className="login-container bg-secondary vh-20">
       <div className="login-form bg-white rounded">
-        <h2 className="text-center">Login</h2>
+        <h2 className="text-center">Student Login</h2>
         <form onSubmit={handleLogin}>
           <div className="mb-3">
             <label htmlFor="email">

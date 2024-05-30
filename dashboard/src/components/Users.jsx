@@ -3,24 +3,40 @@ import { Context } from "../main";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
-const Messages = () => {
-  const [messages, setMessages] = useState([]);
-  const { isAuthenticated } = useContext(Context);
+import { toast } from "react-toastify";
 
+const Users = () => {
+  const { isAuthenticated } = useContext(Context);
+  const [users, setUser] = useState([]);
+
+  //fetch users
   useEffect(() => {
-    const fetchMessages = async () => {
+    const fetchUsers = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:4000/api/v1/message/getall",
+          "http://localhost:4000/api/v1/user/getall",
           { withCredentials: true }
         );
-        setMessages(data.messages);
+        setUser(data.users);
       } catch (error) {
-        console.log("ERROR OCCURED WHILE FETCHING MESSAGES:", error);
+        toast.error(error.response.data.message);
       }
     };
-    fetchMessages();
+    fetchUsers();
   }, []);
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:4000/api/v1/user/delete/${id}`, {
+        withCredentials: true,
+      });
+      // Remove the deleted user from the state
+      setUser(users.filter((member) => member._id !== id));
+      toast.success("User deleted successfully");
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  };
 
   if (!isAuthenticated) {
     return <Navigate to="/login" />;
@@ -29,47 +45,51 @@ const Messages = () => {
     <section className="page messages">
       <h1>ALL USERS</h1>
       <div className="banner">
-        {messages && messages.length > 0 ? (
-          messages.map((element) => {
+        {users && users.length > 0 ? (
+          users.map((element) => {
             return (
-              <div className="card">
+              <div className="card" key={element.id}>
                 <div className="details">
                   <p>
-                    Full Name: <span>Riket Pokharel</span>
+                    Full Name: <span>{element.fullName}</span>
                   </p>
                   <p>
-                    Email: <span>riekt@gmail.com</span>
+                    Email: <span>{element.email}</span>
                   </p>
                   <p>
-                    Phone: <span> 976545585</span>
+                    Phone: <span> {element.phone}</span>
                   </p>
                   <p>
-                    NIC: <span>89475265411</span>
+                    NIC: <span>{element.nic}</span>
                   </p>
                   <p>
-                    Gender: <span>Male</span>
+                    Gender: <span>{element.gender}</span>
                   </p>
                   <p>
-                    Address: <span>Naxal</span>
-                  </p>
-                  <p>
-                    College Name: <span>Herald College Kathmandu</span>
+                    Address: <span>{element.address}</span>
                   </p>
 
                   <p>
-                    Role: <span>Student</span>
+                    Role: <span>{element.role}</span>
                   </p>
-                  <MdDelete style={{ color: "red", fontSize: "50px" }} />
+                  <MdDelete
+                    style={{
+                      color: "red",
+                      fontSize: "50px",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => handleDelete(element._id)}
+                  />
                 </div>
               </div>
             );
           })
         ) : (
-          <h1>NO MESSAGES</h1>
+          <h1>NO USERS FOUND</h1>
         )}
       </div>
     </section>
   );
 };
 
-export default Messages;
+export default Users;

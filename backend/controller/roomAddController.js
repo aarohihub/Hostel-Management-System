@@ -77,3 +77,17 @@ export const getRoom = catchAsyncErrors(async (req, res, next) => {
     room,
   });
 });
+
+//delete rooms
+export const deleteRoom = catchAsyncErrors(async (req, res, next) => {
+  const { id } = req.params;
+  const room = await Room.findByIdAndDelete(id);
+  if (!room) {
+    return next(new ErrorHandler("Room not found", 404));
+  }
+  res.status(200).json({
+    status: true,
+    message: "Room deleted successfully",
+    room,
+  });
+});

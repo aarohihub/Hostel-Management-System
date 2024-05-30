@@ -45,7 +45,9 @@
 
 .tasks-table select.value-accepted {
   background-color: #16a34a;
+  color: black;
 }
 .tasks-table select.value-pending {
   background-color: #eab308;
+  color: black;
 }

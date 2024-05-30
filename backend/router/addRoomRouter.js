@@ -3,6 +3,7 @@ import {
   addRoom,
   getAllRooms,
   getRoom,
+  deleteRoom,
 } from "../controller/roomAddController.js";
 import {
   isAdminAuthenticated,
@@ -17,6 +18,6 @@ router.get("/getall", getAllRooms);
 router.get("/getrooms/:id", isStudentAuthenticated, getRoom);
 // router.put("/update/:id", isAdminAuthenticated, updateRoom);
 
-// router.delete("/delete/:id", isAdminAuthenticated, deleteRoom);
+router.delete("/delete/:id", isAdminAuthenticated, deleteRoom);
 
 export default router;
